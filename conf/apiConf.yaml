@@ -1,0 +1,4 @@
+# Your secret key
+API_KEY:
+  SiliconFlowChat:
+    "your SiliconFlowChat secret"

@@ -63,8 +63,15 @@ def load_folder(folder: str | pathlib.Path) -> None:
     使其中用 @event/@action 装饰的函数即时注册到 bus
     """
     folder = pathlib.Path(folder).expanduser().resolve()
+
+    # ★ 路径存在性与类型检查
+    if not folder.exists():
+        raise FileNotFoundError(f"指定的路径不存在: {folder}")
+    if not folder.is_dir():
+        raise NotADirectoryError(f"指定的路径不是文件夹: {folder}")
+
     for path in folder.rglob("*.py"):
-        if path == pathlib.Path(__file__).resolve():
+        if path.resolve() == pathlib.Path(__file__).resolve():
             continue  # 跳过自身
         spec = importlib.util.spec_from_file_location(path.stem, path)
         module = importlib.util.module_from_spec(spec)

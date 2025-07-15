@@ -5,7 +5,6 @@ import os
 
 root_path = Path(__file__).parent.parent
 
-
 with open(root_path/"pyproject.toml", "rb") as file:
     data = tomli.load(file)
     model_version = data["project"]["model_version"]
@@ -27,6 +26,6 @@ elif os.path.exists(conf_path/"apiConf.yaml"):
     with open(conf_path/"apiConf.yaml", 'r') as file:
         api_conf = yaml.safe_load(file)
 
-heart_log = root_path/"heart_log"
+heart_log = root_path/"logs"
 
 __all__ = ["model","final_model","heart_conf","api_conf","heart_log","plugins"]

@@ -2,10 +2,12 @@ import asyncio
 import random
 from scr.async_signalbus import bus, load_folder
 from scr.PATH import plugins
+from scr.logger import Logger
+
 
 async def main() -> None:
+    _log = Logger()
     # 1) 动态挂起插件
-    print(plugins)
     load_folder(plugins)
 
     # 2) 广播系统级 startup 信号

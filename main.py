@@ -17,11 +17,11 @@ async def main() -> None:
     try:
         while True:
             num = random.randint(1, 9)
-            print(f"\n💡 基础信号：raw_data -> {num}")
+            _log.info(f"\n💡 基础信号：raw_data -> {num}")
             await bus.emit("raw_data", num)
             await asyncio.sleep(1)      # 控制节奏
     except KeyboardInterrupt:
-        print("\n⛔️ 停止主循环，退出。")
+            _log.info("\n⛔️ 停止主循环，退出。")
 
 if __name__ == "__main__":
     asyncio.run(main())

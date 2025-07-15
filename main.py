@@ -1,16 +1,25 @@
-# 这是一个示例 Python 脚本。
+import asyncio
+import random
+from scr.async_signalbus import bus, load_folder
+from scr.PATH import plugins
 
-# 按 Shift+F10 执行或将其替换为您的代码。
-# 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
+async def main() -> None:
+    # 1) 动态挂起插件
+    print(plugins)
+    load_folder(plugins)
 
+    # 2) 广播系统级 startup 信号
+    await bus.emit("startup")
 
-def print_hi(name):
-    # 在下面的代码行中使用断点来调试脚本。
-    print(f'Hi, {name}')  # 按 Ctrl+F8 切换断点。
+    # 3) 主循环：每秒发送一条基础信号 raw_data
+    try:
+        while True:
+            num = random.randint(1, 9)
+            print(f"\n💡 基础信号：raw_data -> {num}")
+            await bus.emit("raw_data", num)
+            await asyncio.sleep(1)      # 控制节奏
+    except KeyboardInterrupt:
+        print("\n⛔️ 停止主循环，退出。")
 
-
-# 按装订区域中的绿色按钮以运行脚本。
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -9,6 +9,8 @@ authors = [
 classifiers = [
     "Programming Language :: Python :: 3.10",
 ]
+plugins_path = "plug-ins"
+
 dependencies = [
     # You can go to the website of PyTouch to install the dependencies
     "numpy>=2.1.2",

@@ -1,4 +1,5 @@
-test
+test.private.Test
 .idea
 .venv
 *.private.*
+*.log

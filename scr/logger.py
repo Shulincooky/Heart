@@ -1,4 +1,6 @@
 import logging
+import os
+
 import colorlog
 from scr.PATH import heart_log
 
@@ -40,6 +42,8 @@ class Logger:
                 }
             )
 
+            if not os.path.exists(heart_log):
+                os.makedirs(heart_log)
             file_formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
             file_handler = logging.FileHandler(f"{heart_log}\\heart.log", encoding='utf-8')
             file_handler.setLevel(logging.DEBUG)  # 记录所有级别到文件

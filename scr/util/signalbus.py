@@ -15,8 +15,9 @@ import asyncio
 import importlib.util
 import inspect
 import pathlib
+from asyncio import Task
 from collections import defaultdict
-from typing import Awaitable, Callable, Dict, List, Union
+from typing import Awaitable, Callable, Dict, List, Union, Coroutine, Any
 
 # → 方便类型提示
 AsyncOrSync = Union[Callable[..., Awaitable], Callable[..., None]]
